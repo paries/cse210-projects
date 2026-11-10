@@ -1,0 +1,46 @@
+Abstraction is the process of taking very complicated objects or processes and providing simpler access to them.
+It can remove the need to have a detailed inner knowledge of that object or process and only expose to the end user the things that they need to interact with that object.
+
+You can also think of Abstraction as a black box. You provide input, the blackbox gives you some data back, and you do not need to know how the blackbox got or calculated the data returned. 
+
+The main benefit of abstraction as mentioned above is the ability to interact with something complex that you have little internal knowledge and still be able interact with the object.
+
+A example of abstraction would be a Database crud object. This object would have a Create, Read, Update and Delete methods. The caller of this object has no idea on how those crud commands work. The crud object does all the heavy lifting like open database, close database , read, write , update and delete database entries.
+
+Here is a code example from my journal
+
+The user calls GetNextRandomPrompt. The caller has no idea or need to know how the prompt is determined.
+It could be static as in this example , or a Database call or even and API call
+
+class PromptFactory
+{
+    public List<int> _usedPrompts = new List<int>();
+    public List<string> _prompts = new List<string>
+    {
+    "What's one moment from today I want to remember, and why did it stand out?",
+    "What am I carrying right now (a worry, a frustration, a hope) that I haven't said out loud?",
+    "When did I feel most like myself this week?",
+    "What does a good day look like for me, in specific detail?",
+    "What's a fear that has quietly shaped my choices?",
+    "What do I want to let go of before the end of this year?"
+    };
+    public string GetNextRandomPrompt()
+    {
+        int maxAttempts = 25;
+        int attempt = 0;
+        do
+        {
+            attempt++;
+            int n = Random.Shared.Next(0, _prompts.Count);
+            if (!_usedPrompts.Contains(n))
+            {
+                _usedPrompts.Add(n);
+                return _prompts[n];
+            }
+        } while (true && attempt < maxAttempts);
+        
+        _usedPrompts.Clear();
+        return _prompts[0];
+    }
+}
+ 
