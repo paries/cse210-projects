@@ -1,0 +1,41 @@
+Encapsulation is enclosing or isolating data and logic of an object. 
+
+Encapsulation allows the object that is encapsulating to protect its data and how it is manipulated and determines what data or logic can be exposed. 
+
+An example of encapsulation would be a method that provides the balance of someone’s account in a billing system.
+In this example a billing object would have a method called. public float GetUsersAccountBalance()
+
+In GetUsersAccountBalance() the object would have to access the users data that would have private and sensitive information that does not need to be exposed. Also there could also be some calculations that would need to be handled first before returning the balance. 
+
+
+
+In HideRandomWords performs actions on private data. It also calls _words[indexToHide].Hide() in which Word handles how to mark and manage the word.
+
+    public void HideRandomWords(int numberToHide)
+    {
+        for (int i = 0; i < numberToHide; i++)
+        {
+            Boolean hidOne = false;
+            int maxWords = _words.Count;
+            int tryCnt = 0;
+            do
+            {
+                int indexToHide = Random.Shared.Next(0, _words.Count);
+                if (!_hiddenIdxs.Contains(indexToHide))
+                {
+                    _words[indexToHide].Hide();
+                    _hiddenIdxs.Add(indexToHide);
+                    hidOne = true;
+                }
+                tryCnt++;
+            } while (!hidOne && tryCnt < (maxWords * 5));
+
+            if (_words.Count == _hiddenIdxs.Count())
+            {
+                _allHidden = true;
+                break;
+            }
+
+        }
+
+    }
