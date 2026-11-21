@@ -11,12 +11,12 @@ public class Comment
         _comment = comment;
     }
 
-    public String getComment()
+    public String GetComment()
     {
         return _comment;
     }
 
-    public String getName()
+    public String GetName()
     {
         return _name;
     }
