@@ -1,0 +1,36 @@
+Inheritance is a way for a way to share common attributes and methods with other classes.
+
+The benifit of inheritance is the removing duplication of attributes and methods that share the same functionallity.
+
+A appliction of inheritance could a a tool that makes API calls to a external datasource.
+An example would be making calls to a SMS providers API.
+One class would be a GetNewNumber class.
+Another class would be SendMessage class.
+Both of these classes with extend the SMS providers HTTP class that would do all the http auth calls and GETS and POSTS and http error handling.
+
+In my activity base class i have
+    public String GetRandomStringFromList(List<String> list)
+    {
+        Random randomGenerator = new Random();
+        return list[randomGenerator.Next(0, list.Count)];
+    }
+
+ This is from my 
+ ReflectingActivity class
+     public String GetRandomPrompt()
+    {
+        return GetRandomStringFromList(_prompts);
+    }
+
+    public String GetRandomQuestion()
+    {
+        return GetRandomStringFromList(_questions);
+    }
+
+And ListingActivity class
+    public String GetRandomPrompt()
+    {
+        return GetRandomStringFromList(_prompts);
+    }
+    
+           
